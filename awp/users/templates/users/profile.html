@@ -1,0 +1,256 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Aptitude Wizard{% endblock %}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+</head>
+
+<body class="min-h-screen hero-pattern bg-gray-50">
+<div class="profile-container mt-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="rounded-md p-4 mb-4
+                        {% if message.tags == 'error' %}bg-red-50 text-red-700 
+                        {% else %} bg-green-50 text-green-700{% endif %}">
+                        <p class="text-sm">{{message}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    
+
+    <!-- Profile Header Section -->
+    <div class="profile-header glass-card p-6 rounded-2xl mb-8">
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+            <!-- Profile Image Section -->
+            <div class="profile-image-container">
+                <img src="{{ request.user.profile.image.url }}" alt="Profile Picture" class="profile-image">
+                <div class="rank-badge {{request.user.profile.get_level_display}}-rank">
+                    <i class="fas fa-award"></i>
+                    <span>{{request.user.profile.get_level_display | capfirst }}</span>
+                </div>
+            </div>
+
+            <!-- User Info Section -->
+            <div class="flex-grow">
+                <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-4">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">{{request.user.first_name}} {{request.user.last_name}}</h1>
+                        <p class="text-blue-600 font-medium">Rank #{{request.user.profile.rank}} among all users </p>
+                        <div class="mt-2 text-gray-600">
+                            <p><strong>Username:</strong> {{request.user.username}}</p>
+                            <p><strong>Email:</strong> {{request.user.email}}</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <a href="{% url 'users:edit-profile' %}">
+                            <button class="edit-profile-btn">
+                                <i class="fas fa-edit mr-2"></i>
+                                Edit Profile
+                            </button>
+                        </a>
+
+                        <a href="{% url 'main:home' %}">
+                            <button class="edit-profile-btn" style="
+                                margin-top: 10px;
+                                padding: 0.5rem 1.5rem;
+                                background: linear-gradient(135deg, #FF0000, #8B0000);
+                                color: white;
+                                border-radius: 9999px;
+                                font-weight: 500;
+                                transition: all 0.3s ease;
+                                box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);">
+                                <i class="fas fa-arrow-left mr-2"></i>
+                                Homepage
+                            </button>
+                        </a>
+
+                    
+                   </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="stat-card">
+            <div class="stat-icon bg-purple-100 text-purple-500">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Total Score</h3>
+                <p class="stat-value">{{request.user.profile.total_score}}</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon bg-blue-100 text-blue-500">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Problems Solved</h3>
+                <p class="stat-value">{{request.user.profile.problems_solved}}</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon bg-green-100 text-green-500">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Achievements</h3>
+                <p class="stat-value">ggggg</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon bg-yellow-100 text-yellow-500">
+                <i class="fas fa-stopwatch"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Practice Hours</h3>
+                <p class="stat-value">2</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Quantitative Aptitude Progress -->
+        <div class="progress-card">
+            <div class="card-header">
+                <h2 class="text-xl font-semibold">
+                    <i class="fas fa-calculator mr-2"></i>
+                    Quantitative Aptitude
+                </h2>
+                <span class="progress-percentage">78%</span>
+            </div>
+            <div class="progress-topics">
+                <div class="topic-progress">
+                    <div class="topic-header">
+                        <span>Number System</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="topic-progress">
+                    <div class="topic-header">
+                        <span>Algebra</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="topic-progress">
+                    <div class="topic-header">
+                        <span>Geometry</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logical Reasoning Progress -->
+        <div class="progress-card">
+            <div class="card-header">
+                <h2 class="text-xl font-semibold">
+                    <i class="fas fa-puzzle-piece mr-2"></i>
+                    Logical Reasoning
+                </h2>
+                <span class="progress-percentage">67%</span>
+            </div>
+            <div class="progress-topics">
+                <div class="topic-progress">
+                    <div class="topic-header">
+                        <span>Verbal Reasoning</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="topic-progress">
+                    <div class="topic-header">
+                        <span>Non-verbal Reasoning</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 65%"></div>
+                    </div>
+                </div>
+                <div class="topic-progress">
+                    <div class="topic-header">
+                        <span>Analytical Reasoning</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Achievement Badges Section -->
+    <div class="achievement-section glass-card mt-8 p-6 rounded-2xl">
+        <h2 class="text-xl font-semibold mb-4">
+            <i class="fas fa-medal mr-2"></i>
+            Achievement Badges
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div class="badge-card">
+                <div class="badge-icon unlocked">
+                    <i class="fas fa-star"></i>
+                </div>
+                <span>Quick Learner</span>
+            </div>
+            <div class="badge-card">
+                <div class="badge-icon unlocked">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <span>Problem Solver</span>
+            </div>
+            <div class="badge-card">
+                <div class="badge-icon locked">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <span>Master Mind</span>
+            </div>
+            <div class="badge-card">
+                <div class="badge-icon locked">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <span>Speed Demon</span>
+            </div>
+            <div class="badge-card">
+                <div class="badge-icon locked">
+                    <i class="fas fa-diamond"></i>
+                </div>
+                <span>Diamond Solver</span>
+            </div>
+            <div class="badge-card">
+                <div class="badge-icon locked">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <span>Analytical Pro</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

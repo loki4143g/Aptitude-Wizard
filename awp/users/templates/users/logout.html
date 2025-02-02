@@ -1,0 +1,47 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+{% block title %}
+    {{ block.super }} - Logout
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'users/css/logout.css' %}">
+{% endblock %}
+{% block content %}
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="glass-effect max-w-md w-full space-y-8 p-8 rounded-xl shadow-lg fade-in">
+        <div class="text-center">
+            <div class="flex items-center justify-center">
+                <img src="{% static 'main/images/logo2.jpg' %}" alt="Logo" class="h-12 w-12 rounded-full">
+            </div>
+            <h2 class="mt-4 text-3xl font-extrabold text-blue-900">See You Soon!</h2>
+            <p class="mt-2 text-sm text-gray-600">You've been successfully logged out</p>
+        </div>
+        
+        <div class="space-y-6">
+            <div class="bg-blue-50 rounded-lg p-4 text-center">
+                <p class="text-blue-800">Thanks for spending time with Aptitude Wizard! Your journey to mastery continues...</p>
+            </div>
+            
+            <div class="space-y-4">
+                <a href="{% url 'users:login' %}" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
+                    Sign In Again
+                </a>
+                
+                <div class="text-center">
+                    <p class="text-sm text-gray-500">Want to keep practicing?</p>
+                    <a href="{% url 'users:register' %}" class="mt-1 text-sm font-medium text-blue-600 hover:text-blue-500">
+                        Create another account
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center text-sm text-gray-500">
+                <p>"Success is not final, failure is not fatal: it is the courage to continue that counts."</p>
+                <p class="mt-1 italic">- Winston Churchill</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

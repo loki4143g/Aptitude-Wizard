@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aptitude Wizard - Edit Profile</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'users/css/editprofile.css' %}">
+    </head>
+
+    <body class="min-h-screen hero-pattern bg-gray-50">
+    <div class="edit-profile-container px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+        <div class="edit-profile-card glass-card p-8 rounded-2xl">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-user-edit mr-3 text-blue-500"></i>
+                Edit Profile
+            </h1>
+
+            <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                {% csrf_token %}
+                
+                <!-- Profile Image Upload Section -->
+                <div class="profile-upload-section">
+                    <div class="profile-preview-container">
+                        <img id="profilePreview" src="{{ request.user.profile.image.url }}" 
+                            alt="Profile Preview" class="profile-preview-image">
+                        <div class="upload-overlay">
+                            <i class="fas fa-camera text-2xl"></i>
+                            <span class="text-sm mt-2">Change Photo</span>
+                        </div>
+                    </div>
+                    <input type="file" id="imageInput" name="profile_image" 
+                        class="hidden" accept="image/*">
+                </div>
+
+                <!-- Form Fields -->
+                <div class="space-y-4">
+                    <!-- Username Field -->
+                    <div class="form-group">
+                        <label for="username" class="form-label">
+                            <i class="fas fa-user text-blue-500"></i>
+                            Username
+                        </label>
+                        <input type="text" id="username" name="username" 
+                            value="{{ request.user.username }}"
+                            class="form-input">
+                    </div>
+
+                    <!-- First Name Field -->
+                    <div class="form-group">
+                        <label for="first_name" class="form-label">
+                            <i class="fas fa-font text-blue-500"></i>
+                            First Name
+                        </label>
+                        <input type="text" id="first_name" name="first_name" 
+                            value="{{ request.user.first_name }}"
+                            class="form-input">
+                    </div>
+
+                    <!-- Last Name Field -->
+                    <div class="form-group">
+                        <label for="last_name" class="form-label">
+                            <i class="fas fa-font text-blue-500"></i>
+                            Last Name
+                        </label>
+                        <input type="text" id="last_name" name="last_name" 
+                            value="{{ request.user.last_name }}"
+                            class="form-input">
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">
+                            <i class="fas fa-envelope text-blue-500"></i>
+                            Email
+                        </label>
+                        <input type="email" id="email" name="email" 
+                            value="{{ request.user.email }}"
+                            class="form-input">
+                    </div>
+                </div>
+
+                <!-- Buttons Section -->
+                <div class="flex justify-end space-x-4 mt-8">
+                    <a href="{% url 'users:profile' %}" 
+                    class="cancel-button">
+                        Cancel
+                    </a>
+                    <button type="submit" class="save-button">
+                        <i class="fas fa-save mr-2"></i>
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript for Image Preview -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const profilePreview = document.getElementById('profilePreview');
+        const imageInput = document.getElementById('imageInput');
+        const uploadSection = document.querySelector('.profile-preview-container');
+
+        uploadSection.addEventListener('click', function() {
+            imageInput.click();
+        });
+
+        imageInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    profilePreview.src = e.target.result;
+                    profilePreview.classList.add('preview-changed');
+                    setTimeout(() => profilePreview.classList.remove('preview-changed'), 300);
+                }
+                
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    });
+    </script>
+</body>
+</html>

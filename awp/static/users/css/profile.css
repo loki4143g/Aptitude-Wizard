@@ -1,0 +1,244 @@
+
+/* Glass Card Effect */
+.glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+}
+
+.hero-pattern {
+    background-color: #f3f4f6;
+    background-image: radial-gradient(#cbd5e1 0.5px, transparent 0.5px), radial-gradient(#cbd5e1 0.5px, #f3f4f6 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+}
+
+/* Rank Badge Styles */
+.rank-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    animation: badgePulse 2s infinite;
+}
+
+.bronze-rank {
+    background: linear-gradient(135deg, #cd7f32, #b87333);
+    color: white;
+}
+
+.silver-rank {
+    background: linear-gradient(135deg, #C0C0C0, #E8E8E8);
+    color: #2d3748;
+}
+
+.gold-rank {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #2d3748;
+}
+
+/* Edit Profile Button */
+.edit-profile-btn {
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, #3B82F6, #2563EB);
+    color: white;
+    border-radius: 9999px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.edit-profile-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+
+
+/* Stats Card Styles */
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+
+.stat-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.stat-content h3 {
+    font-size: 0.875rem;
+    color: #4B5563;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1F2937;
+}
+
+/* Progress Card Styles */
+.progress-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.progress-percentage {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #3B82F6;
+}
+
+.topic-progress {
+    margin-bottom: 1rem;
+}
+
+.topic-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: #4B5563;
+}
+
+.progress-bar {
+    height: 0.5rem;
+    background: #E5E7EB;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #3B82F6, #2563EB);
+    border-radius: 9999px;
+    transition: width 1s ease-in-out;
+}
+
+/* Achievement Badge Styles */
+.badge-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.badge-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.badge-icon:hover {
+    transform: scale(1.1);
+}
+
+.badge-icon.unlocked {
+    background: linear-gradient(135deg, #3B82F6, #2563EB);
+    color: white;
+}
+
+.badge-icon.locked {
+    background: #E5E7EB;
+    color: #9CA3AF;
+}
+
+/* Animations */
+@keyframes badgePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-header {
+        text-align: center;
+    }
+   
+    .stat-cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* Profile Image Container Styles - Updated size */
+.profile-image-container {
+    position: relative;
+    width: 200px;  /* Increased from 150px */
+    height: 200px; /* Increased from 150px */
+    margin: 0 auto; /* Centers the container on mobile */
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid white; /* Increased border width */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* Enhanced shadow */
+    transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+}
+
+/* Enhanced Profile Container Padding */
+.profile-container {
+    min-height: calc(100vh - 4rem);
+    padding-top: 2rem; /* Added padding at the top */
+}
+
+.profile-header {
+    padding: 2rem !important; /* Increased padding */
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+    .profile-image-container {
+        width: 180px;  /* Slightly smaller on mobile */
+        height: 180px;
+        margin-bottom: 1.5rem;
+    }
+}
