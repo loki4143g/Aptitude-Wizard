@@ -1,0 +1,33 @@
+.glass-effect {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.option-hover:hover:not(.selected) {
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.selected {
+    background-color: rgba(59, 130, 246, 0.2);
+    border-color: #3b82f6;
+}
+
+.correct {
+    background-color: rgba(16, 185, 129, 0.2);
+    border-color: #10b981;
+}
+
+.incorrect {
+    background-color: rgba(239, 68, 68, 0.2);
+    border-color: #ef4444;
+}
+
+.pagination-button {
+    transition: all 0.3s ease;
+}
+
+.pagination-button:hover {
+    transform: translateY(-2px);
+}
+

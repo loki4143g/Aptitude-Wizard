@@ -1,0 +1,91 @@
+
+
+/* Glass effect for navigation */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Animation for dropdown */
+#profileDropdown {
+    transition: all 0.2s ease-in-out;
+    transform-origin: top right;
+}
+
+#profileDropdown.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+}
+
+/* Animation for badge */
+.profile-trigger span {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+
+
+
+/* Hero pattern background */
+.hero-pattern {
+    background-color: #f3f4f6;
+    background-image: radial-gradient(#cbd5e1 0.5px, transparent 0.5px), radial-gradient(#cbd5e1 0.5px, #f3f4f6 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+}
+
+/* Smooth transitions for dropdown */
+.profile-dropdown {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: all 0.2s ease-in-out;
+}
+
+.profile-dropdown.hidden {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+    pointer-events: none;
+}
+
+/* Optional: Add a subtle hover effect to dropdown items */
+.profile-dropdown a:hover {
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* Optional: Add shadow to profile image */
+.profile-trigger img {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for badge */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.profile-trigger span {
+    animation: pulse 2s infinite;
+}
