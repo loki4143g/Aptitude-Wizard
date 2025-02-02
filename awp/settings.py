@@ -83,12 +83,17 @@ WSGI_APPLICATION = 'awp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME' : BASE_DIR/'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',  # Or another database engine
+        'NAME': 'mydb_tiya',
+        'USER': 'mydb_tiya_user',
+        'PASSWORD': 'JzB4xsVqWulAIp0wibfIRqqFPdXJmuKu',
+        'HOST': 'dpg-cufgjtdds78s73fl7dr0-a.oregon-postgres.render.com',  # Or your database host
+        'PORT': '5432',  # The default PostgreSQL port
     }
 }
 
-DATABASES["default"] = dj_database_url.parse(os.getenv('DATABASE_URL'))
+
+# DATABASES["default"] = dj_database_url.parse(os.getenv('DATABASE_URL'))
 
 
 # Password validation
