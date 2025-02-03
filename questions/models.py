@@ -1,4 +1,6 @@
 from django.db import models
+import cloudinary
+from cloudinary.models import CloudinaryField
 
 class Category(models.Model):
     section = models.CharField(max_length=255, default="Quantitative Aptitude")
@@ -32,7 +34,7 @@ class Question(models.Model):
     option_4 = models.CharField(max_length=255)
     correct_option = models.IntegerField(choices=OPTION_CHOICES)
     explanation = models.TextField(blank=True, null=True)
-    solution_image = models.ImageField(default='profilepic.jpg', upload_to='solutions')
+    solution_image = CloudinaryField("image", null=True, blank=True)
     tag = models.CharField(choices=TAG_CHOICES, max_length=1)
 
     def __str__(self):

@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+import cloudinary
+from cloudinary.models import CloudinaryField
 
 class Profile(models.Model):
     LEVEL_CHOICES = [
@@ -15,7 +17,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     level = models.CharField(max_length=1, choices=LEVEL_CHOICES, default='B')
     rank = models.IntegerField(default=100000)
-    image = models.ImageField(default='profilepic.jpg', upload_to='profilepictures')
+    image = CloudinaryField("profile", null=True, blank=True)
     total_score = models.IntegerField(default=0)
     problems_solved = models.IntegerField(default=0)
 

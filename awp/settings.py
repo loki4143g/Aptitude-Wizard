@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -142,5 +145,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'main:home'
 LOGIN_URL = 'users:login'
 
+cloudinary.config(
+    cloud_name = "dsvh54olg",
+    api_key = "679384613836252",
+    api_secret = "L-z0Qq2rYS4ElCE7DQVbIvwLy4w"
+)
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'pictures')
 MEDIA_URL = '/pictures/'
+DEFAULT_FILES_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
