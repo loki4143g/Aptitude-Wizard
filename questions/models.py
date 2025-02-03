@@ -34,7 +34,7 @@ class Question(models.Model):
     option_4 = models.CharField(max_length=255)
     correct_option = models.IntegerField(choices=OPTION_CHOICES)
     explanation = models.TextField(blank=True, null=True)
-    solution_image = CloudinaryField("image", null=True, blank=True)
+    solution_image = CloudinaryField('image', null=True, blank=True)
     tag = models.CharField(choices=TAG_CHOICES, max_length=1)
 
     def __str__(self):

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'main',
     'questions',
     'users',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
