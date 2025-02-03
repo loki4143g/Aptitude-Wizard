@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.core.files.storage import default_storage
+import cloudinary.uploader
 
 def user_register(request):
     if request.method == "POST":
@@ -64,10 +65,8 @@ def editprofile(request):
         
         if 'profile_image' in request.FILES:
             image = request.FILES.get('profile_image')
-
-            filename = f'profilepictures/{image.name}'
-            user.profile.image = filename
-            default_storage.save(filename, image)
+            response = cloudinary.uploader.upload(image, folder="profilepictures")
+            user.profile.profile_picture = response["secure_url"]
 
         
         
