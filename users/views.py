@@ -66,7 +66,7 @@ def editprofile(request):
         if 'profile_image' in request.FILES:
             image = request.FILES.get('profile_image')
             response = cloudinary.uploader.upload(image, folder="profilepictures")
-            user.profile.profile_picture = response["secure_url"]
+            user.profile.image = response["secure_url"]
 
         
         
